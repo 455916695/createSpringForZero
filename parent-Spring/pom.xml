@@ -13,6 +13,7 @@
     <properties>
         <!--properties   定义属性 -->
         <junit.version>4.12</junit.version>
+        <dom4j.version>1.6.1</dom4j.version>
     </properties>
 
     <!-- 管理依赖版本 -->
@@ -25,6 +26,11 @@
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>dom4j</groupId>
+                <artifactId>dom4j</artifactId>
+                <version>${dom4j.version}</version>
             </dependency>
         </dependencies>
 

@@ -6,5 +6,9 @@
 
     <bean  id="petStore"  class="org.litespring.service.v1.PetStoreService" />
 
+    <!--  用于测试BeanCreationException    -->
+    <bean  id="invalidBean"  class="xxx.xxx" />
+
+
 
 </beans>
