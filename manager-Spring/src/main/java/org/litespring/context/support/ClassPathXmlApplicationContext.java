@@ -1,22 +1,18 @@
 package org.litespring.context.support;
 
-import org.litespring.beans.factory.support.DefaultBeanFactory;
-import org.litespring.beans.factory.xml.XmlBeanDefinitionReader;
-import org.litespring.context.ApplicationContext;
 
-public class ClassPathXmlApplicationContext  implements ApplicationContext{
+import org.litespring.core.io.ClassPathResource;
+import org.litespring.core.io.Resource;
 
-    private DefaultBeanFactory factory = null;       //   ApplicationContext  继承了BeanFactory接口,  ClassPathXmlApplicationContext 实现了这个接口，且组合DefaultBeanFactory
+public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
 
     public ClassPathXmlApplicationContext(String configFile) {
-        factory = new DefaultBeanFactory();
-        XmlBeanDefinitionReader  reader = new XmlBeanDefinitionReader(factory);
-        reader.loadBeanDefinitions(configFile);
+        super(configFile);
     }
 
-    public Object getBean(String beanId) {
-        return factory.getBean(beanId);
+    @Override
+    protected Resource getResourceByPath(String path) {
+        return new ClassPathResource(path,this.getBeanClassLoader());
     }
-
 }
