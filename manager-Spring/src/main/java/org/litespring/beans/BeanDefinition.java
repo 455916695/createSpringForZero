@@ -1,5 +1,7 @@
 package org.litespring.beans;
 
+import java.util.List;
+
 public interface BeanDefinition {
 
     public static  final String SCOPE_SINGLETON = "singleton";
@@ -18,5 +20,6 @@ public interface BeanDefinition {
 
     public String getBeanClassName();
 
-
+    //获取 属性对象列表  <property  name=""  ref="" /> <property  name=""  value="" />
+    List<PropertyValue> getPropertyValues();
 }
