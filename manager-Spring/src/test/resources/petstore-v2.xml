@@ -6,7 +6,8 @@
 
     <bean  id="petStore"  class="org.litespring.service.v2.PetStoreService" >
            <property name="itemDao" ref="itemDao"  />
-            <property name="accountDao" ref="accountDao" />
+           <property name="accountDao" ref="accountDao" />
+           <property name="owner" value="ax" />
     </bean>
 
     <bean id="itemDao" class="org.litespring.dao.v2.ItemDao" />

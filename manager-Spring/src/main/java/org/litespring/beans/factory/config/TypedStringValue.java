@@ -9,7 +9,7 @@ public class TypedStringValue {
     }
 
     public String getValue() {
-        return this.getValue();
+        return this.value;
     }
 
 }

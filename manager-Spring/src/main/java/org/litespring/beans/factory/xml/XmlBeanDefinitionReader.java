@@ -1,5 +1,7 @@
 package org.litespring.beans.factory.xml;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -37,6 +39,8 @@ public class XmlBeanDefinitionReader {
 
     public static final String NAME_ATTRIBUTE = "name";
 
+    public final Log logger = LogFactory.getLog(getClass());
+
     BeanDefinitionRegistry registry;
 
     public  XmlBeanDefinitionReader(BeanDefinitionRegistry registry){
@@ -48,9 +52,9 @@ public class XmlBeanDefinitionReader {
         try {
 //            ClassLoader  classLoader = ClassUtils.getDefaultClassLoader();    //通过ClassUtils 工具类  获取  ClassLoader
 //            inputStream = classLoader.getResourceAsStream(configFile);        // 调用classLoader的getResurceAsStream()获取输入流对象
-            inputStream  =  resource.getInputStream();
+            inputStream  =  resource.getInputStream();                      //调用Resource 的getInputStream()  获取 相应的输入流
             SAXReader  saxReader = new SAXReader();
-            Document document = saxReader.read(inputStream);
+            Document document = saxReader.read(inputStream);               //使用saxReader.read()   获取Document对象
 
             Element rootElement = document.getRootElement();
             Iterator iterator = rootElement.elementIterator();
@@ -62,6 +66,7 @@ public class XmlBeanDefinitionReader {
                 if(element.attribute(SCOPE_ATTRIBUTE) !=null) {
                     beanDefinition.setScope(element.attributeValue(SCOPE_ATTRIBUTE));
                 }
+                parsePropertyElement(element,beanDefinition); //解析指定element  并将解析出来的数据存放到beanDefinition
                 this.registry.registerBeanDefinition(id,beanDefinition);
             }
         } catch (DocumentException e) {
@@ -125,3 +130,6 @@ public class XmlBeanDefinitionReader {
 
 
 }
+
+
+
